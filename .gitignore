@@ -89,3 +89,9 @@ gen
 # VS Code project files
 .vscode/
 
+# Ignore H2 database files
+*.h2.db
+*.mv.db
+*.trace.db
+*.data*
+
