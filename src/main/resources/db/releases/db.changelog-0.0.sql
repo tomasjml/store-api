@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS storeapidb;
+SET SCHEMA storeapidb;

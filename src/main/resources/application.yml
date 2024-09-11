@@ -1,0 +1,31 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /store-api
+
+spring:
+  application:
+    name: StoreAPI
+  datasource:
+    url: jdbc:h2:mem:storeapidb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+    enabled: true
+  h2:
+    console.enabled: true
+    console:
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: never
+
+logging:
+  level:
+    liquibase:
+      INFO
