@@ -1,23 +1,60 @@
--- Insert initial Products
-INSERT INTO product (id, name, price) VALUES ('123e4567-e89b-12d3-a456-426614174000', 'Laptop', 999.99);
-INSERT INTO product (id, name, price) VALUES ('123e4567-e89b-12d3-a456-426614174001', 'Smartphone', 499.99);
-INSERT INTO product (id, name, price) VALUES ('123e4567-e89b-12d3-a456-426614174002', 'Headphones', 199.99);
-INSERT INTO product (id, name, price) VALUES ('123e4567-e89b-12d3-a456-426614174003', 'Keyboard', 89.99);
-INSERT INTO product (id, name, price) VALUES ('123e4567-e89b-12d3-a456-426614174004', 'Mouse', 29.99);
+-- Insert initial Products with categories
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174000', 'Laptop', 999.99, 'ELECTRONICS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174001', 'Smartphone', 499.99, 'ELECTRONICS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174002', 'Headphones', 199.99, 'ELECTRONICS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174003', 'Keyboard', 89.99, 'ELECTRONICS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174004', 'Mouse', 29.99, 'ELECTRONICS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174005', 'T-shirt', 19.99, 'CLOTHING');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174006', 'Jeans', 49.99, 'CLOTHING');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174007', 'Pizza', 15.99, 'FOOD');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174008', 'Fiction Book', 12.99, 'BOOKS');
+INSERT INTO STOREAPIDB.PRODUCT (id, name, price, category)
+VALUES ('123e4567-e89b-12d3-a456-426614174009', 'Toy Car', 9.99, 'TOYS');
 
 -- Insert initial Invoices
-INSERT INTO invoice (id, date, total_amount) VALUES ('123e4567-e89b-12d3-a456-426614174010', '2024-09-01', 1289.97);
-INSERT INTO invoice (id, date, total_amount) VALUES ('123e4567-e89b-12d3-a456-426614174011', '2024-09-02', 529.98);
-INSERT INTO invoice (id, date, total_amount) VALUES ('123e4567-e89b-12d3-a456-426614174012', '2024-09-03', 89.99);
+INSERT INTO STOREAPIDB.INVOICE (id, date, total_amount)
+VALUES ('123e4567-e89b-12d3-a456-426614174010', '2024-09-01', 1289.97);
+INSERT INTO STOREAPIDB.INVOICE (id, date, total_amount)
+VALUES ('123e4567-e89b-12d3-a456-426614174011', '2024-09-02', 529.98);
+INSERT INTO STOREAPIDB.INVOICE (id, date, total_amount)
+VALUES ('123e4567-e89b-12d3-a456-426614174012', '2024-09-03', 89.99);
+INSERT INTO STOREAPIDB.INVOICE (id, date, total_amount)
+VALUES ('123e4567-e89b-12d3-a456-426614174013', '2024-09-04', 350.00);
+INSERT INTO STOREAPIDB.INVOICE (id, date, total_amount)
+VALUES ('123e4567-e89b-12d3-a456-426614174014', '2024-09-05', 129.99);
 
 -- Insert Product associations to Invoices (Many-to-Many)
 -- Invoice 1 includes a Laptop and Headphones
-INSERT INTO invoice_product (invoice_id, product_id) VALUES ('123e4567-e89b-12d3-a456-426614174010', '123e4567-e89b-12d3-a456-426614174000');
-INSERT INTO invoice_product (invoice_id, product_id) VALUES ('123e4567-e89b-12d3-a456-426614174010', '123e4567-e89b-12d3-a456-426614174002');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174010', '123e4567-e89b-12d3-a456-426614174000');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174010', '123e4567-e89b-12d3-a456-426614174002');
 
 -- Invoice 2 includes a Smartphone and Mouse
-INSERT INTO invoice_product (invoice_id, product_id) VALUES ('123e4567-e89b-12d3-a456-426614174011', '123e4567-e89b-12d3-a456-426614174001');
-INSERT INTO invoice_product (invoice_id, product_id) VALUES ('123e4567-e89b-12d3-a456-426614174011', '123e4567-e89b-12d3-a456-426614174004');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174011', '123e4567-e89b-12d3-a456-426614174001');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174011', '123e4567-e89b-12d3-a456-426614174004');
 
 -- Invoice 3 includes only a Keyboard
-INSERT INTO invoice_product (invoice_id, product_id) VALUES ('123e4567-e89b-12d3-a456-426614174012', '123e4567-e89b-12d3-a456-426614174003');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174012', '123e4567-e89b-12d3-a456-426614174003');
+
+-- Invoice 4 includes T-shirt and Jeans
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174013', '123e4567-e89b-12d3-a456-426614174005');
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174013', '123e4567-e89b-12d3-a456-426614174006');
+
+-- Invoice 5 includes a Pizza and Fiction Book
+INSERT INTO STOREAPIDB.INVOICE_PRODUCT (invoice_id, product_id)
+VALUES ('123e4567-e89b-12d3-a456-426614174014', '123e4567-e89b-12d3-a456-426614174007');

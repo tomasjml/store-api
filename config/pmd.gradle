@@ -1,0 +1,6 @@
+pmd {
+    toolVersion = '6.39.0'
+    sourceSets = [sourceSets.main]
+    ruleSetFiles = files("${project.rootDir}/config/pmd/ruleset.xml")
+    ignoreFailures = true
+}

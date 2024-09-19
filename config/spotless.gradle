@@ -1,0 +1,24 @@
+spotless {
+    java {
+        target fileTree('.') {
+            include '**/*.java'
+            exclude '**/build/**', '**/build-*/**'
+        }
+        toggleOffOn()
+        importOrder('java|javax', 'com.dialexa', '', '\\#com.dialexa', '\\#')
+        cleanthat()
+        googleJavaFormat('1.18.0')
+        formatAnnotations()
+        palantirJavaFormat()
+
+
+        indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+        endWithNewline()
+    }
+}
+
+tasks.register('fix') {
+    dependsOn 'spotlessApply'
+    group = 'Formatting'
+    description = 'Alias for spotlessApply'
+}

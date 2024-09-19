@@ -21,6 +21,7 @@ spring:
       settings:
         web-allow-others: true
         trace: true
+
   jpa:
     hibernate:
       ddl-auto:
@@ -31,6 +32,7 @@ logging:
   level:
     liquibase:
       INFO
+
 springdoc:
   api-docs:
     enabled: true

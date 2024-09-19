@@ -2,11 +2,12 @@ package com.dialexa.storeapi.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -14,11 +15,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "storeapidb", name = "product")
-public class Product {
+@Table(schema = "storeapidb", name = "invoice")
+public class InvoiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
-    private String name;
-    private BigDecimal price;
+
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "total_amount")
+    private BigDecimal totalAmount;
 }
