@@ -95,3 +95,7 @@ gen
 *.trace.db
 *.data*
 
+# SpringBoot ignores
+build/
+gradle/
+.gradle
