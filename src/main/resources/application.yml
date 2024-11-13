@@ -7,25 +7,18 @@ spring:
   application:
     name: StoreAPI
   datasource:
-    url: jdbc:h2:file:./data/storeapidb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://db:5432/stacy_store_db
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yml
     enabled: true
-  h2:
-    console.enabled: true
-    console:
-      path: /h2-console
-      settings:
-        web-allow-others: true
-        trace: true
 
   jpa:
     hibernate:
-      ddl-auto:
-    database-platform: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: false
 
 logging:
