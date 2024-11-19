@@ -4,12 +4,11 @@ import com.dialexa.storeapi.entities.InvoiceEntity;
 import com.dialexa.storeapi.services.InvoiceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "Invoice Endpoints")
@@ -31,8 +30,7 @@ public class InvoiceController {
     @Operation(summary = "Get invoice by id")
     public ResponseEntity<InvoiceEntity> getInvoiceById(@PathVariable UUID id) {
         Optional<InvoiceEntity> invoice = invoiceService.findById(id);
-        return invoice.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return invoice.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

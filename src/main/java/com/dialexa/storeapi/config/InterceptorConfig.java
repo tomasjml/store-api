@@ -1,16 +1,14 @@
 package com.dialexa.storeapi.config;
 
 import com.dialexa.storeapi.entities.interfaces.CustomInterceptor;
+import java.util.Arrays;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.Arrays;
-
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-
     private final ApplicationContext applicationContext;
 
     public InterceptorConfig(ApplicationContext applicationContext) {

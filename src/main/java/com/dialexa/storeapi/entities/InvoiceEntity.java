@@ -1,14 +1,13 @@
 package com.dialexa.storeapi.entities;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Getter

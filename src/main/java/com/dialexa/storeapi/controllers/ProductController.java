@@ -4,12 +4,11 @@ import com.dialexa.storeapi.entities.ProductEntity;
 import com.dialexa.storeapi.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "Product Endpoints")
@@ -31,8 +30,7 @@ public class ProductController {
     @Operation(summary = "Get product by id")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable UUID id) {
         Optional<ProductEntity> product = productService.findById(id);
-        return product.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

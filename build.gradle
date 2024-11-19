@@ -9,8 +9,8 @@ plugins {
 }
 
 apply from: "./config/spotless.gradle"
-apply from: "./config/checkstyle.gradle"
-apply from: "./config/pmd.gradle"
+apply from: "./config/checkstyle/checkstyle.gradle"
+apply from: "./config/pmd/pmd.gradle"
 apply from: "./config/jacoco.gradle"
 
 group = 'com.dialexa'
@@ -19,6 +19,8 @@ version = '0.0.1-SNAPSHOT'
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+        sourceCompatibility = JavaLanguageVersion.of(21)
+        targetCompatibility = JavaLanguageVersion.of(21)
     }
 }
 
@@ -54,4 +56,13 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.register('generateReports') {
+    dependsOn 'spotlessCheck', 'checkstyleMain', 'pmdMain'
+    doLast {
+        println "Spotless report: build/reports/spotless/spotlessCheck.html"
+        println "Checkstyle report: build/reports/checkstyle/main.html"
+        println "PMD report: build/reports/pmd/main.html"
+    }
 }

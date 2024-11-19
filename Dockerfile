@@ -16,5 +16,5 @@ RUN gradle clean build -x test
 # Expose the application port
 EXPOSE 9090
 
-# Run the application directly from the build output
-ENTRYPOINT ["java", "-jar", "build/libs/store-api-0.0.1-SNAPSHOT.jar"]
+# Run the application directly from the build output with Spring Boot DevTools
+ENTRYPOINT ["java", "-Dspring.devtools.restart.enabled=true", "-jar", "build/libs/store-api-0.0.1-SNAPSHOT.jar"]

@@ -3,27 +3,32 @@ package com.dialexa.storeapi.middleware;
 import com.dialexa.storeapi.entities.interfaces.CustomInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
-
-import java.io.BufferedReader;
 
 @Slf4j
 @Component
 public class InOutLogMiddleware implements CustomInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
 
             // Log query parameters
-            var queryParams = request.getParameterMap();
-            log.info("ENTER {}.{} with query parameters: {}", method.getBeanType().getSimpleName(), method.getMethod().getName(), queryParams);
+            Map<String, String[]> queryParams = request.getParameterMap();
+            log.info(
+                    "ENTER {}.{} with query parameters: {}",
+                    method.getBeanType().getSimpleName(),
+                    method.getMethod().getName(),
+                    queryParams);
 
             // Log form parameters (for POST/PUT requests)
             if ("POST".equalsIgnoreCase(request.getMethod()) || "PUT".equalsIgnoreCase(request.getMethod())) {
-                var formParams = request.getParameterMap();
+                Map<String, String[]> formParams = request.getParameterMap();
                 log.info("Form parameters: {}", formParams);
             }
 
@@ -42,10 +47,14 @@ public class InOutLogMiddleware implements CustomInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
-            log.info("EXIT {}.{}", method.getBeanType().getSimpleName(), method.getMethod().getName());
+            log.info(
+                    "EXIT {}.{}",
+                    method.getBeanType().getSimpleName(),
+                    method.getMethod().getName());
         }
     }
 }
