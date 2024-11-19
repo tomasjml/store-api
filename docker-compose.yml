@@ -13,17 +13,22 @@ services:
       - "5432:5432"
 
   app:
-     build:
-       context: .
-       dockerfile: Dockerfile
-     environment:
-       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/stacy_store_db
-       SPRING_DATASOURCE_USERNAME: postgres
-       SPRING_DATASOURCE_PASSWORD: password
-     ports:
-       - "9090:9090"
-     depends_on:
-       - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/stacy_store_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+    volumes:
+      - app_data:/app/data    # Persisting app data in a separate volume
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
+    name: store_api_postgres_data  # Named volume for DB data
+  app_data:
+    name: store_api_app_data       # Named volume for app data (optional, use if you need to persist app data)

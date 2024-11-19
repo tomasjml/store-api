@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "storeapidb", name = "invoice")
+@Table(schema = "stacy_store_db", name = "invoice")
 public class InvoiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

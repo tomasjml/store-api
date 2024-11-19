@@ -17,4 +17,4 @@ RUN gradle clean build -x test
 EXPOSE 9090
 
 # Run the application directly from the build output with Spring Boot DevTools
-ENTRYPOINT ["java", "-Dspring.devtools.restart.enabled=true", "-jar", "build/libs/store-api-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Dspring.devtools.restart.enabled=true", "-jar", "build/libs/StoreAPI-0.0.1-SNAPSHOT.jar"]
