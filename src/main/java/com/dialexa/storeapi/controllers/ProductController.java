@@ -1,14 +1,14 @@
 package com.dialexa.storeapi.controllers;
 
-import com.dialexa.storeapi.entities.ProductEntity;
+import com.dialexa.storeapi.entities.records.ProductRecord;
 import com.dialexa.storeapi.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @Tag(name = "Product Endpoints")
@@ -22,28 +22,26 @@ public class ProductController {
 
     @GetMapping
     @Operation(summary = "Get all products")
-    public List<ProductEntity> getAllProducts() {
+    public List<ProductRecord> getAllProducts() {
         return productService.findAll();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
-    public ResponseEntity<ProductEntity> getProductById(@PathVariable UUID id) {
-        Optional<ProductEntity> product = productService.findById(id);
-        return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProductRecord> getProductById(@PathVariable UUID id) {
+        return ResponseEntity.ok(productService.findById(id));
     }
 
     @PostMapping
     @Operation(summary = "Create product")
-    public ProductEntity createProduct(@RequestBody ProductEntity product) {
+    public ProductRecord createProduct(@RequestBody ProductRecord product) {
         return productService.save(product);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update product")
-    public ResponseEntity<ProductEntity> updateProduct(@PathVariable UUID id, @RequestBody ProductEntity product) {
-        product.setId(id);
-        ProductEntity updatedProduct = productService.save(product);
+    public ResponseEntity<ProductRecord> updateProduct(@PathVariable UUID id, @RequestBody ProductRecord product) {
+        ProductRecord updatedProduct = productService.save(product);
         return ResponseEntity.ok(updatedProduct);
     }
 

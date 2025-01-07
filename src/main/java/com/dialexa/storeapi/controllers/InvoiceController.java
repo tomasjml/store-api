@@ -1,11 +1,11 @@
 package com.dialexa.storeapi.controllers;
 
 import com.dialexa.storeapi.entities.InvoiceEntity;
+import com.dialexa.storeapi.entities.records.InvoiceRecord;
 import com.dialexa.storeapi.services.InvoiceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +22,15 @@ public class InvoiceController {
 
     @GetMapping
     @Operation(summary = "Get all invoices")
-    public List<InvoiceEntity> getAllInvoices() {
+    public List<InvoiceRecord> getAllInvoices() {
         return invoiceService.findAll();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get invoice by id")
-    public ResponseEntity<InvoiceEntity> getInvoiceById(@PathVariable UUID id) {
-        Optional<InvoiceEntity> invoice = invoiceService.findById(id);
-        return invoice.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<InvoiceRecord> getInvoiceById(@PathVariable UUID id) {
+        InvoiceRecord invoice = invoiceService.findById(id);
+        return ResponseEntity.ok(invoice);
     }
 
     @PostMapping
